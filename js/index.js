@@ -26,8 +26,15 @@ body.addEventListener('keydown', function(event){
 body.addEventListener('wheel', () => {
     console.log(`You have used the wheel.`)
 });
-// drag / drop
-
+// drag
+const imageDrag = document.querySelector('.intro img')
+imageDrag.addEventListener('drag', (event) => {
+    event.target.style.opacity =.1;
+});
+//drop
+imageDrag.addEventListener('dragleave', (event) => {
+    event.target.style.opacity = 100;
+});
 // load
 window.addEventListener('load', () => {
     alert('Website has loaded');
@@ -50,9 +57,8 @@ window.addEventListener('scroll', () => {
   });
 // select
 
-body.addEventListener(select, function(event){
-    const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
-    console.log(` You have selected: ${selection}`)
+document.addEventListener('select', (input) => {
+    console.log(`You have selected ${input}.`)
 });
 
 // dblclick
@@ -66,4 +72,23 @@ navAnchors.forEach(node => {
         event.target.style.color = 'white';
         event.target.style.fontSize = '2.1rem';
     });
+});
+
+navAnchors.forEach(node => {
+    node.addEventListener('click', function(event){
+        event.target.style.fontSize = '1.6rem';
+        event.target.style.backgroundColor = 'white';
+        event.target.style.color = 'black';
+    });
+});
+
+const header = document.querySelector('.intro');
+const allHtwos = document.querySelectorAll('h2');
+// Stop Propagation
+header.addEventListener('click', function(event){
+    event.target.style.fontSize = '2rem';
+});
+allHtwos[0].addEventListener('click', function(event){
+    event.target.style.color = 'green';
+    event.stopPropagation();
 });
